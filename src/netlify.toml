@@ -1,3 +1,2 @@
 [build]
-  command = "npm install,npm cache clean --force
-"
+  command = "npm install"
