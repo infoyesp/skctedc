@@ -1,6 +1,8 @@
 import React from 'react';
 import firebase from './firebase';
 import "./App.css"; // Import your CSS file
+import Admin from './admin'
+import { Link } from 'react-router-dom';
 
 class App extends React.Component {
     state = {
@@ -135,6 +137,9 @@ class App extends React.Component {
                         </div>
                         
                         <button type="submit" disabled={errorMessage || loading}>{loading ? 'Submitting...' : 'Submit Form'}</button>
+                        <Link to="/admin">
+      <button>Admin</button>
+    </Link>
                     </form>
                 </div>
             </div>
