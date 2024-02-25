@@ -82,7 +82,7 @@ class App extends React.Component {
         return (
             <div className="app-container container">
                 <div className="skct-edc-form">
-                    <h2>Skct Edc Team</h2>
+                    <h2>Ecell - SKCT</h2>
                     <form className="contact-form" onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="name">Your Name</label>
@@ -118,7 +118,7 @@ class App extends React.Component {
                             <input type="text" id="Year" name="year" placeholder="Year" required onChange={this.handleChange} value={this.state.year} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="team">Select Team</label>
+                            <label htmlFor="team">Which Team you would like to contribute</label>
                             <select id="team" name="team" onChange={this.handleChange} value={this.state.team} required>
                                 <option value="">Select Team</option>
                                 <option value="social media Team">social media Team</option>
@@ -130,6 +130,7 @@ class App extends React.Component {
                                 <option value="Event Management">Event Management</option>
                                 <option value="Tech Team">Tech Team</option>
                                 <option value="Digest Team">Digest Team</option>
+                                <option value="Member">Member</option>
                             </select>
                         </div>
                         
