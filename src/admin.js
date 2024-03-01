@@ -39,8 +39,8 @@ class App extends Component {
                 'College Email': entry.collegeEmail,
                 'Department':entry.Department,
                 'Year':entry.Year,
-                'EDC Email': entry.edcEmail,
-                'Team': entry.team,
+                // 'EDC Email': entry.edcEmail,
+                // 'Team': entry.team,
                 
                 // Add more fields as necessary
             };
@@ -77,9 +77,9 @@ class App extends Component {
                                     <p>College Email: {data.collegeEmail}</p>
                                     <p>Year: {data.year}</p>
                                     <p>Department: {data.Department}</p>
-                                    <p>EDC Email: {data.edcEmail}</p>
+                                    {/* <p>EDC Email: {data.edcEmail}</p> */}
 
-                                    <p>Team: {data.team}</p>
+                                    {/* <p>Team: {data.team}</p> */}
                                     {/* <p>Message: {data.message}</p> */}
                                 </div>
                             ))

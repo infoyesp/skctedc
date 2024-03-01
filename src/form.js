@@ -14,7 +14,8 @@ class App extends React.Component {
         Department: '',
         year:'',
         loading: false,
-        errorMessage: ''
+        errorMessage: '',
+        esummitChecked: false // Added state for esummit checkbox
     };
     
     handleChange = (e) => {
@@ -30,15 +31,26 @@ class App extends React.Component {
             errorMessage: errorMessage
         });
     };
+
+    // Function to handle esummit checkbox change
+    handleEsummitCheckboxChange = (e) => {
+        this.setState({ esummitChecked: e.target.checked });
+    }
     
     handleSubmit = (e) => {
         e.preventDefault();
-        const { collegeEmail } = this.state;
+        const { collegeEmail, esummitChecked } = this.state;
 
         if (!collegeEmail.endsWith('@skct.edu.in')) {
             this.setState({
                 errorMessage: 'College email must end with @skct.edu.in'
             });
+            return;
+        }
+
+        // Check if esummit checkbox is not checked
+        if (!esummitChecked) {
+            alert("Please confirm you have registered for the esummit IIT Madras before submitting the form.");
             return;
         }
 
@@ -62,8 +74,8 @@ class App extends React.Component {
                 name: '',
                 phoneNumber: '',
                 collegeEmail: '',
-                edcEmail: '',
-                team: '',
+                // edcEmail: '',
+                // team: '',
                 Department: '',
                 year:'',
                 loading: false,
@@ -79,12 +91,12 @@ class App extends React.Component {
     };
   
     render() {
-        const { loading, errorMessage } = this.state;
+        const { loading, errorMessage, esummitChecked } = this.state;
 
         return (
             <div className="app-container container">
                 <div className="skct-edc-form">
-                    <h2>Ecell - SKCT</h2>
+                    <h2>Ecell - SKCT(Registered for esummit IIT Madras)</h2>
                     <form className="contact-form" onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="name">Your Name</label>
@@ -108,10 +120,6 @@ class App extends React.Component {
                             {errorMessage && <p className="error-message">{errorMessage}</p>}
                         </div>
                         <div className="form-group">
-                            <label htmlFor="edcEmail">Your EDC Email</label>
-                            <input type="email" id="edcEmail" name="edcEmail" placeholder="Your EDC Email" required onChange={this.handleChange} value={this.state.edcEmail} />
-                        </div>
-                        <div className="form-group">
                             <label htmlFor="Department">Department</label>
                             <input type="text" id="Department" name="Department" placeholder="Your Department" required onChange={this.handleChange} value={this.state.Department} />
                         </div>
@@ -119,27 +127,23 @@ class App extends React.Component {
                             <label htmlFor="Year">Year</label>
                             <input type="text" id="Year" name="year" placeholder="Year" required onChange={this.handleChange} value={this.state.year} />
                         </div>
+
+                        {/* Checkbox for esummit */}
                         <div className="form-group">
-                            <label htmlFor="team">Which Team you would like to contribute</label>
-                            <select id="team" name="team" onChange={this.handleChange} value={this.state.team} required>
-                                <option value="">Select Team</option>
-                                <option value="social media Team">social media Team</option>
-                                <option value="Design Team">Design Team</option>
-                                <option value="Entrepreneur connect">Entrepreneur connect</option>
-                                <option value="Idea to product I2P<">Idea to product I2P</option>
-                                <option value="Product to people P2P">Product to people P2P</option>
-                                <option value="MSME">MSME</option>
-                                <option value="Event Management">Event Management</option>
-                                <option value="Tech Team">Tech Team</option>
-                                <option value="Digest Team">Digest Team</option>
-                                <option value="Member">Member</option>
-                            </select>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={esummitChecked}
+                                    onChange={this.handleEsummitCheckboxChange}
+                                />
+                                Registered for esummit IIT Madras
+                            </label>
                         </div>
                         
                         <button type="submit" disabled={errorMessage || loading}>{loading ? 'Submitting...' : 'Submit Form'}</button>
-                        <Link to="/admin">
+                        {/* <Link to="/admin">
       <button>Admin</button>
-    </Link>
+    </Link> */}
                     </form>
                 </div>
             </div>
